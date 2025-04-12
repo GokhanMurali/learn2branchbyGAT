@@ -112,3 +112,109 @@
   keywords = {notion},
   file = {/Users/gokhanmurali/Zotero/storage/EIHDY8UY/Kılınç Karzan et al. - 2009 - Information-based branching schemes for binary lin.pdf}
 }
+
+@techreport{applegateFindingCutsTSP1995,
+  type = {Technical {{Report}}},
+  title = {Finding {{Cuts}} in the {{TSP}} ({{A}} Preliminary Report)},
+  author = {Applegate, D. and Bixby, R. and Chvatal, V. and Cook, B.},
+  year = {1995},
+  month = mar,
+  institution = {Center for Discrete Mathematics \& Theoretical Computer Science},
+  abstract = {TSPLIB is Gerhard Reinelt''s library of some hundred instances of the traveling salesman problem. Some of these instances arise from drilling holes in printed circuit boards; others arise from X-ray crystallography; yet others have been constructed artificially. None of them (with a single exception) is contrived to be hard and none of them is contrived to be easy; their sizes range from 17 to 85,900 cities; some of them have been solved and others have not. We have solved twenty previously unsolved problems from the TSPLIB. One of them is the problem with 225 cities that was contrived to be hard; the sizes of the remaining nineteen range from 1,000 to 7,397 cities. Like all the successful computer programs for solving the TSP, our computer program follows the scheme designed by George Dantzig, Ray Fulkerson, and Selmer Johnson in the early nineteen-fifties. The purpose of this preliminary report is to describe *some* of our innovations in implementing the Dantzig-Fulkerson-Johnson scheme; we are planning to write up a more comprehensive account of our work soon.},
+  keywords = {notion}
+}
+
+@phdthesis{DBLP:phd/de/Achterberg2007,
+  author       = {Tobias Achterberg},
+  title        = {Constraint integer programming},
+  school       = {Berlin Institute of Technology},
+  year         = {2007},
+  urn          = {urn:nbn:de:kobv:83-opus-16117},
+  isbn         = {978-3-89963-892-9},
+  timestamp    = {Sat, 17 Jul 2021 09:07:38 +0200},
+  biburl       = {https://dblp.org/rec/phd/de/Achterberg2007.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{alvarezMachineLearningBasedApproximation2017,
+  title = {A {{Machine Learning-Based Approximation}} of {{Strong Branching}}},
+  author = {Alvarez, Alejandro Marcos and Louveaux, Quentin and Wehenkel, Louis},
+  year = {2017},
+  month = jan,
+  journal = {INFORMS Journal on Computing},
+  volume = {29},
+  number = {1},
+  pages = {185--195},
+  issn = {1091-9856, 1526-5528},
+  doi = {10.1287/ijoc.2016.0723},
+  urldate = {2023-12-22},
+  abstract = {We present in this paper a new generic approach to variable branching in branch and bound for mixed-integer linear problems. Our approach consists in imitating the decisions taken by a good branching strategy, namely strong branching, with a fast approximation. This approximated function is created by a machine learning technique from a set of observed branching decisions taken by strong branching. The philosophy of the approach is similar to reliability branching. However, our approach can catch more complex aspects of observed previous branchings to take a branching decision. The experiments performed on randomly generated and MIPLIB problems show promising results.},
+  langid = {english},
+  keywords = {notion},
+  file = {/Users/gokhanmurali/Zotero/storage/M9JNLH3J/Alvarez et al_2017_A Machine Learning-Based Approximation of Strong Branching.pdf}
+}
+
+@article{khalilLearningBranchMixed2016,
+  title = {Learning to {{Branch}} in {{Mixed Integer Programming}}},
+  author = {Khalil, Elias and Le Bodic, Pierre and Song, Le and Nemhauser, George and Dilkina, Bistra},
+  year = {2016},
+  month = feb,
+  journal = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume = {30},
+  number = {1},
+  issn = {2374-3468, 2159-5399},
+  doi = {10.1609/aaai.v30i1.10080},
+  urldate = {2023-12-16},
+  abstract = {The design of strategies for branching in Mixed Integer Programming (MIP) is guided by cycles of parameter tuning and offline experimentation on an extremely heterogeneous testbed, using the average performance. Once devised, these strategies (and their parameter settings) are essentially input-agnostic. To address these issues, we propose a machine learning (ML) framework for variable branching in MIP.Our method observes the decisions made by Strong Branching (SB), a time-consuming strategy that produces small search trees, collecting features that characterize the candidate branching variables at each node of the tree. Based on the collected data, we learn an easy-to-evaluate surrogate function that mimics the SB strategy, by means of solving a learning-to-rank problem, common in ML. The learned ranking function is then used for branching. The learning is instance-specific, and is performed on-the-fly while executing a branch-and-bound search to solve the MIP instance. Experiments on benchmark instances indicate that our method produces significantly smaller search trees than existing heuristics, and is competitive with a state-of-the-art commercial solver.},
+  keywords = {notion},
+  file = {/Users/gokhanmurali/Zotero/storage/LFLAQJ4F/Khalil et al_2016_Learning to Branch in Mixed Integer Programming.pdf}
+}
+
+@misc{gasseExactCombinatorialOptimization2019,
+  title = {Exact {{Combinatorial Optimization}} with {{Graph Convolutional Neural Networks}}},
+  author = {Gasse, Maxime and Ch{\'e}telat, Didier and Ferroni, Nicola and Charlin, Laurent and Lodi, Andrea},
+  year = {2019},
+  month = oct,
+  number = {arXiv:1906.01629},
+  eprint = {1906.01629},
+  primaryclass = {cs, math, stat},
+  publisher = {arXiv},
+  urldate = {2023-12-22},
+  abstract = {Combinatorial optimization problems are typically tackled by the branch-and-bound paradigm. We propose a new graph convolutional neural network model for learning branch-and-bound variable selection policies, which leverages the natural variable-constraint bipartite graph representation of mixed-integer linear programs. We train our model via imitation learning from the strong branching expert rule, and demonstrate on a series of hard problems that our approach produces policies that improve upon state-of-the-art machine-learning methods for branching and generalize to instances significantly larger than seen during training. Moreover, we improve for the first time over expert-designed branching rules implemented in a state-of-the-art solver on large problems. Code for reproducing all the experiments can be found at https://github.com/ds4dm/learn2branch.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,notion,Statistics - Machine Learning},
+  file = {/Users/gokhanmurali/Zotero/storage/6I9EEIA8/Gasse et al_2019_Exact Combinatorial Optimization with Graph Convolutional Neural Networks.pdf;/Users/gokhanmurali/Zotero/storage/KQ8WDPU8/1906.html}
+}
+
+@misc{kipfSemiSupervisedClassificationGraph2017,
+  title = {Semi-{{Supervised Classification}} with {{Graph Convolutional Networks}}},
+  author = {Kipf, Thomas N. and Welling, Max},
+  year = {2017},
+  month = feb,
+  number = {arXiv:1609.02907},
+  eprint = {1609.02907},
+  primaryclass = {cs, stat},
+  publisher = {arXiv},
+  urldate = {2024-04-11},
+  abstract = {We present a scalable approach for semi-supervised learning on graph-structured data that is based on an efficient variant of convolutional neural networks which operate directly on graphs. We motivate the choice of our convolutional architecture via a localized first-order approximation of spectral graph convolutions. Our model scales linearly in the number of graph edges and learns hidden layer representations that encode both local graph structure and features of nodes. In a number of experiments on citation networks and on a knowledge graph dataset we demonstrate that our approach outperforms related methods by a significant margin.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Machine Learning,notion,Statistics - Machine Learning},
+  file = {/Users/gokhanmurali/Zotero/storage/AMLGTYJS/Kipf_Welling_2017_Semi-Supervised Classification with Graph Convolutional Networks.pdf;/Users/gokhanmurali/Zotero/storage/WC8C26CA/1609.html}
+}
+
+@misc{velickovicGraphAttentionNetworks2018,
+  title = {Graph {{Attention Networks}}},
+  author = {Veli{\v c}kovi{\'c}, Petar and Cucurull, Guillem and Casanova, Arantxa and Romero, Adriana and Li{\`o}, Pietro and Bengio, Yoshua},
+  year = {2018},
+  month = feb,
+  number = {arXiv:1710.10903},
+  eprint = {1710.10903},
+  primaryclass = {cs, stat},
+  publisher = {arXiv},
+  urldate = {2023-12-10},
+  abstract = {We present graph attention networks (GATs), novel neural network architectures that operate on graph-structured data, leveraging masked self-attentional layers to address the shortcomings of prior methods based on graph convolutions or their approximations. By stacking layers in which nodes are able to attend over their neighborhoods' features, we enable (implicitly) specifying different weights to different nodes in a neighborhood, without requiring any kind of costly matrix operation (such as inversion) or depending on knowing the graph structure upfront. In this way, we address several key challenges of spectral-based graph neural networks simultaneously, and make our model readily applicable to inductive as well as transductive problems. Our GAT models have achieved or matched state-of-the-art results across four established transductive and inductive graph benchmarks: the Cora, Citeseer and Pubmed citation network datasets, as well as a protein-protein interaction dataset (wherein test graphs remain unseen during training).},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Computer Science - Social and Information Networks,notion,Statistics - Machine Learning},
+  file = {/Users/gokhanmurali/Zotero/storage/7ZF3YGI3/Veličković et al. - 2018 - Graph Attention Networks.pdf;/Users/gokhanmurali/Zotero/storage/WFWTW9WN/1710.html}
+}
+
