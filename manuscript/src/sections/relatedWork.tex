@@ -1,0 +1,57 @@
+\section{Related Work}\label{sec:relatedWork}
+
+Strong Branching is an efficient branching strategy in terms of the number of nodes generated but is costly in terms of time.
+To mitigate the time cost disadvantage of the Strong Branching strategy, researchers have focused on developing strategies that can make Strong Branching-like decisions more quickly and efficiently.
+One group of researchers aimed to leverage machine learning techniques to learn a function that would mimic the Strong Branching strategy.
+
+
+\subsection{ExtraTrees Based Imitation of Strong Branching}\label{subsec:extratrees-based-imitation-of-strong-branching}
+One of the pioneering studies in this field belongs to Alvarez et al.~\cite{alvarezMachineLearningBasedApproximation2017}.
+In this study, Alvarez et al.~\cite{alvarezMachineLearningBasedApproximation2017} attempted to mimic the Strong Branching strategy by using a machine learning algorithm called ExtraTrees~\cite{geurtsExtremelyRandomizedTrees2006}.
+The method used in this study consists of three steps.
+
+
+In first step, randomly generated set covering (SC), multi knapsack (MKN), bin packing (BP), and equality (EQ) problems were solved using the Strong Branching strategy.
+In addition to the Strong Branching scores calculated for each variable at each node, static problem features such as cost coefficient of variable $i$, dynamic problem features such as the fractionality of variable $i$ at the current solution and dynamic optimization features such as the number of times variable $i$ has been chosen as branching variable were also recorded for use during the training phase.
+Detailed description of features can be seen in Appendix A Table 0.1. % burası revize edilecek
+
+
+In second step, a function to mimic Strong Branching was learned using the ExtraTrees machine learning algorithm with $10^5$ training examples.
+Alvarez et al.~\cite{alvarezMachineLearningBasedApproximation2017} approached the problem as a regression problem.
+The recorded features were utilized as inputs to learn a weight vector for calculating the Strong Branching score for each branching candidate variable, in a manner similar to the Strong Branching strategy.
+It can be stated that the learning process occurs offline.
+
+
+In third step, the learned heuristic and other branching strategies (Random Branching, Most Infeasible Branching (MIB), Nonchimerical Branching (NCB), Full Strong Branching (FSB), and Reliability Branching (RB) were tested on two different datasets: randomly generated problems and standard benchmark problems from MIPLIB.
+At this stage, two types of experiments were performed.
+The first involved terminating the optimization process early, based on a predefined limit on either the number of nodes(a limit of $10^5$ nodes) explored or the computation time (a limit of 10 minutes) elapsed.
+The second set of experiments allowed the problems to be solved to optimality, regardless of the time or node required.
+
+
+An analysis of the experimental results, where MIPLIB problems were solved using CPLEX under node and time limits, reveals that the proposed branching strategy performs comparably to strong branching in both scenarios.
+However, the performance of the learned branching strategy remains slightly inferior to that achieved with Reliability Branching (RB).
+The closed gap (“Cl. Gap”) in Table~\ref{tab:alvarez-results} is defined as the ratio of the difference between the current dual bound and the objective value of the initial LP relaxation to the difference between the optimal objective value and the objective value of the initial LP relaxation.
+A value close to 1 indicates that the optimization process is nearing its final stages.
+
+\input{tables/alvarez_results}
+
+
+When we examine the experimental results in which MIPLIB problems were solved by CPLEX until optimality, as can be seen in Table~\ref{tab:alvarez-results-2}, it is observed that the learned function is the strategy that produces the fastest solutions when cuts and heuristics are used by CPLEX.
+It was observed that the learned function solved the problems with fewer nodes compared to the Random and MIB strategies.
+However, in terms of node count, the learned function is less effective than the RB and NCB strategies.
+When cuts and heuristics are not used by CPLEX learned function seems to be non-efficient in terms of node count and time.
+
+\input{tables/alvarez_results_2}
+
+
+\subsection{ExtraTrees Based Imitation of Strong Branching}
+Another study in this field was conducted by Khalil et al~\cite{khalilLearningBranchMixed2016}.
+In this study, the researchers attempted to mimic the Strong Branching strategy using the svmRank machine learning algorithm.
+This study consists of three steps.
+
+
+In first step, unlike the study by Alvarez et al.~\cite{alvarezMachineLearningBasedApproximation2017}, in this research, training and testing were conducted on the same problem instance.
+It can be stated that the learning process occurs online.
+Branching was performed using Strong Branching for the first $\Theta$ nodes of each problem.
+Each variable was assigned a label based on the Strong Branching score.
+The following formula was used for label assignment:

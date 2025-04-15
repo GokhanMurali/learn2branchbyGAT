@@ -1,0 +1,28 @@
+\begin{table}[htb!]
+    \centering
+    \begin{tabular}{|c c c c c|}
+        \hline
+        \textbf{Criteria} & \textbf{S/T} & \textbf{Cl. Gap} & \textbf{Nodes} & \textbf{Time (s)}\\
+        \hline
+        \textbf{Node Limit} & & & & \\
+        \textbf{Random} & 0/44 & 0.43 & 10,000 & 124.50 \\
+        \textbf{MIB} & 6/44 & 0.50 & 9,274 & 233.19 \\
+        \textbf{NCB} & 11/44 & 0.72 & 7,322 & 232.74\\
+        \textbf{FSB} & \textbf{12/44} & \textbf{0.73} & \textbf{7,184} & 629.87 \\
+        \textbf{RB} & 10/44 & 0.64 & 7,806 & 219.39 \\
+        \textbf{Learned} & 10/44 & 0.62 & 8,073 & \textbf{162.87}\\
+        \hline
+        \textbf{Time Limit} & & & & \\
+        \textbf{Random} & 0/44 & 0.47 & 867,837 & 600.01 \\
+        \textbf{MIB} & 3/44 & 0.52 & 764,439 & 561.27\\
+        \textbf{NCB} & 5/44 & \textbf{0.73} & 101,408 & 513.00 \\
+        \textbf{FSB} & 3/44 & 0.66 & \textbf{49,008} & 534.65 \\
+        \textbf{RB} & \textbf{7/44} & 0.69 & 257,375 & 515.40\\
+        \textbf{Learned} & 5/44 & 0.63 & 130,081 & \textbf{512.72} \\
+        \hline
+    \end{tabular}
+    \caption{Optimization results under node and time limits on MIBLIP dataset for different branching strategies.
+    The best value is in bold.
+    “S/T” represents the ratio of problems solved within the given node or time limit to the total number of problems.}
+    \label{tab:alvarez-results}
+\end{table}

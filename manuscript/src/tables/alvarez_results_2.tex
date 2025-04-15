@@ -1,0 +1,20 @@
+\begin{table}[htb!]
+    \centering
+    \begin{tabular}{|c c c c c|}
+        \hline
+        \textbf{} & \multicolumn{2}{c}{\textbf{w/o cuts \& heuristics}} & \multicolumn{2}{c|}{\textbf{cuts \& heuristics}}\\
+        \hline
+        \textbf{Strategy} & \textbf{Nodes} & \textbf{Time(s)} & \textbf{Nodes} & \textbf{Time(s)} \\
+        \hline
+        \textbf{Random} & 7,809,341 & 29,377.10 & 152,564 & 503.38 \\
+        \textbf{MIB} & 3,472,431 & 7,387.09 & 105,692 & 356.52 \\
+        \textbf{NCB} & 145,244 & 1,136.34 & 34,500 & 1,451.74\\
+        \textbf{FSB} & \textbf{129,047} & 1,597.12 & \textbf{25,941} & 895.36\\
+        \textbf{RB} & 318,384 & \textbf{886.12} & 51,913 & 2,836.93\\
+        \textbf{Learned} & 1,037,055 & 3,023.4 & 57,652 & \textbf{124.94}\\
+        \hline
+    \end{tabular}
+    \caption{Optimization results (until termination) on MIBLIP dataset for different branching strategies.
+    Lower is better, and the best value is in bold.}
+    \label{tab:alvarez-results-2}
+\end{table}
