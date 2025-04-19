@@ -1,0 +1,19 @@
+\begin{table*}[htb!]
+    \centering
+    \begin{tabular}{|l c c c c c|}
+        \hline
+        \textbf{Models} & \textbf{Number of Nodes} & \textbf{Improvement} & \textbf{Time} & \textbf{Improvement} & \textbf{Win}\\
+        \hline
+        \textbf{FSB} & 8.02 $\pm$ 1.5 & - & 14.24 $\pm$ 2.42 & - & -\\
+        \textbf{MIB} & 403.15 $\pm$ 4.65 & - & 2.61 $\pm$ 1.86 & - & -\\
+        \textbf{RPB} & 13.83 $\pm$ 2.05 & - & 2.29 $\pm$ 1.39 & - & -\\
+        \hline
+        \textbf{GCNN} & 74.60 $\pm$ 2.35 & - & \textbf{1.47 $\pm$ 1.29} & - & 36/100\\
+        \textbf{MHGAT8} & \textbf{70.94 $\pm$ 2.37} & \textcolor{green}{4.91\%} & 1.57 $\pm$ 1.29 & \textcolor{red}{-6.77\%} & \textbf{55/100}\\
+        \hline
+    \end{tabular}
+    \caption{Evaluation results for “Easy” Combinatorial Auction problems. “Number of Nodes” and “Time” (in seconds) are shifted geometric means over instances with shifts 10 and 1, respectively.
+    A "win" was defined as solving a problem with fewer nodes.
+    Best value among GCNN and GAT is in bold.}
+    \label{tab:ca-results-easy}
+\end{table*}

@@ -1,0 +1,19 @@
+\begin{table*}[htb!]
+    \centering
+    \begin{tabular}{|l c c c c c|}
+        \hline
+        \textbf{Models} & \textbf{Number of Nodes} & \textbf{Improvement} & \textbf{Time} & \textbf{Improvement} & \textbf{Win}\\
+        \hline
+        \textbf{FSB} & 13.19 $\pm$ 2.04 & - & 32.16 $\pm$ 3.25 & - & -\\
+        \textbf{MIB} & 1,156.5 $\pm$ 5.63 & - & 10.59 $\pm$ 3.09 & - & -\\
+        \textbf{RPB} & 47.30 $\pm$ 3.78 & - & 6.27 $\pm$ 1.66 & - & -\\
+        \hline
+        \textbf{GCNN} & 123.55 $\pm$ 2.79 & - & \textbf{3.79 $\pm$ 1.61} & - & 38/100\\
+        \textbf{MHGAT8} & \textbf{122.57 $\pm$ 2.82} & \textcolor{green}{0.79\%} & 5.99 $\pm$ 1.98 & \textcolor{red}{-58.02\%} & \textbf{52/100}\\
+        \hline
+    \end{tabular}
+    \caption{Evaluation results for “Easy” Set Covering problems. “Number of Nodes” and “Time” (in seconds) are shifted geometric means over instances with shifts 10 and 1, respectively.
+    A "win" was defined as solving a problem with fewer nodes.
+    Best value among GCNN and GAT is in bold.}
+    \label{tab:sc-results-easy}
+\end{table*}

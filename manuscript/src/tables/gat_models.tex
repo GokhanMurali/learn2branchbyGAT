@@ -1,0 +1,20 @@
+\begin{table*}[htb!]
+    \centering
+    \begin{tabular}{|l c c c c|}
+        \hline
+        \textbf{Model/Parameters} & \textbf{GAT} & \textbf{MHGAT2} & \textbf{MHGAT4} & \textbf{MHGAT8}\\
+        \hline
+        \textbf{Number of Convolutions} & 2 & 2 & 2 & 2\\
+        \textbf{Number of Attention Heads in First Convolution} & 1 & 2 & 4 & 8\\\
+        \textbf{Aggregation Method in First Convolution} & N/A & Concatenate & Concatenate & Concatenate\\
+        \textbf{Number of Attention Head in Second Convolution} & 1 & 2 & 2 & 2\\
+        \textbf{Aggregation Method in Second Convolution} & N/A & Average & Average & Average\\
+        \textbf{Optimizer} & Adam & Adam & Adam & Adam\\
+        \textbf{Learning Rate} & 0.001 & 0.001 & 0.001 & 0.001\\
+        \textbf{Number of Epochs} & 50 & 50 & 50 & 50\\
+        \textbf{Batch Size} & 32 & 32 & 32 & 32\\
+        \hline
+    \end{tabular}
+    \caption{The GAT models trained in this study. “MH” represents “Multi Head”.}
+    \label{tab:gat-models}
+\end{table*}

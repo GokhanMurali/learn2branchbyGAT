@@ -265,3 +265,182 @@
 }
 
 
+@misc{baLayerNormalization2016,
+  title = {Layer {{Normalization}}},
+  author = {Ba, Jimmy Lei and Kiros, Jamie Ryan and Hinton, Geoffrey E.},
+  year = {2016},
+  month = jul,
+  number = {arXiv:1607.06450},
+  eprint = {1607.06450},
+  primaryclass = {stat},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.1607.06450},
+  urldate = {2025-04-19},
+  abstract = {Training state-of-the-art, deep neural networks is computationally expensive. One way to reduce the training time is to normalize the activities of the neurons. A recently introduced technique called batch normalization uses the distribution of the summed input to a neuron over a mini-batch of training cases to compute a mean and variance which are then used to normalize the summed input to that neuron on each training case. This significantly reduces the training time in feed-forward neural networks. However, the effect of batch normalization is dependent on the mini-batch size and it is not obvious how to apply it to recurrent neural networks. In this paper, we transpose batch normalization into layer normalization by computing the mean and variance used for normalization from all of the summed inputs to the neurons in a layer on a single training case. Like batch normalization, we also give each neuron its own adaptive bias and gain which are applied after the normalization but before the non-linearity. Unlike batch normalization, layer normalization performs exactly the same computation at training and test times. It is also straightforward to apply to recurrent neural networks by computing the normalization statistics separately at each time step. Layer normalization is very effective at stabilizing the hidden state dynamics in recurrent networks. Empirically, we show that layer normalization can substantially reduce the training time compared with previously published techniques.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  file = {/Users/gokhanmurali/Zotero/storage/AUNHSY4G/Ba et al_2016_Layer Normalization.pdf;/Users/gokhanmurali/Zotero/storage/IVSXLICN/1607.html}
+}
+
+
+@misc{kingmaAdamMethodStochastic2017,
+  title = {Adam: {{A Method}} for {{Stochastic Optimization}}},
+  shorttitle = {Adam},
+  author = {Kingma, Diederik P. and Ba, Jimmy},
+  year = {2017},
+  month = jan,
+  number = {arXiv:1412.6980},
+  eprint = {1412.6980},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.1412.6980},
+  urldate = {2025-04-19},
+  abstract = {We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments. The method is straightforward to implement, is computationally efficient, has little memory requirements, is invariant to diagonal rescaling of the gradients, and is well suited for problems that are large in terms of data and/or parameters. The method is also appropriate for non-stationary objectives and problems with very noisy and/or sparse gradients. The hyper-parameters have intuitive interpretations and typically require little tuning. Some connections to related algorithms, on which Adam was inspired, are discussed. We also analyze the theoretical convergence properties of the algorithm and provide a regret bound on the convergence rate that is comparable to the best known results under the online convex optimization framework. Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods. Finally, we discuss AdaMax, a variant of Adam based on the infinity norm.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Machine Learning},
+  file = {/Users/gokhanmurali/Zotero/storage/JM7CFARI/Kingma_Ba_2017_Adam.pdf}
+}
+
+
+@misc{hansknechtCutsPrimalHeuristics2018a,
+  title = {Cuts, {{Primal Heuristics}}, and {{Learning}} to {{Branch}} for the {{Time-Dependent Traveling Salesman Problem}}},
+  author = {Hansknecht, Christoph and Joormann, Imke and Stiller, Sebastian},
+  year = {2018},
+  month = may,
+  number = {arXiv:1805.01415},
+  eprint = {1805.01415},
+  primaryclass = {math},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.1805.01415},
+  urldate = {2025-04-19},
+  abstract = {We consider the time-dependent traveling salesman problem (TDTSP), a generalization of the asymmetric traveling salesman problem (ATSP) to incorporate time-dependent cost functions. In our model, the costs of an arc can change arbitrarily over time (and do not only dependent on the position in the tour). The TDTSP turns out to be structurally more difficult than the TSP. We prove it is NP-hard and APX-hard even if a generalized version of the triangle inequality is satisfied. In particular, we show that even the computation of one-trees becomes intractable in the case of time-dependent costs. We derive two IP formulations of the TDTSP based on time-expansion and propose different pricing algorithms to handle the significantly in- creased problem size. We introduce multiple families of cutting planes for the TDTSP as well as different LP-based primal heuristics, a propaga- tion method and a branching rule. We conduct computational experiments to evaluate the effectiveness of our approaches on randomly generated in- stances. We are able to decrease the optimality gap remaining after one hour of computations to about six percent, compared to a gap of more than forty percent obtained by an off-the-shelf IP solver. Finally, we carry out a first attempt to learn strong branching decisions for the TDTSP. At the current state, this method does not improve the running times.},
+  archiveprefix = {arXiv},
+  keywords = {Mathematics - Optimization and Control,notion},
+  file = {/Users/gokhanmurali/Zotero/storage/NU4MZE6J/Hansknecht et al_2018_Cuts, Primal Heuristics, and Learning to Branch for the Time-Dependent.pdf;/Users/gokhanmurali/Zotero/storage/DMREPE9S/1805.html}
+}
+
+
+@incollection{balasSetCoveringAlgorithms1980,
+  title = {Set Covering Algorithms Using Cutting Planes, Heuristics, and Subgradient Optimization: {{A}} Computational Study},
+  shorttitle = {Set Covering Algorithms Using Cutting Planes, Heuristics, and Subgradient Optimization},
+  booktitle = {Combinatorial {{Optimization}}},
+  author = {Balas, Egon and Ho, Andrew},
+  editor = {Balinski, M. L. and Beale, E. M. L. and Dantzig, George B. and Kantorovich, L. and Koopmans, Tjalling C. and Tucker, A. W. and Wolfe, Philip and Bartels, R. and Chv{\'a}tal, V{\'a}clav and Cottle, Richard W. and Dennis, J. E. and Eaves, B. Curtis and Fletcher, R. and Korte, B. and Iri, Masao and Lemarechal, C. and Lemke, C. E. and Nemhauser, George L. and Padberg, Manfred W. and Powell, M. J. D. and Shapiro, Jeremy F. and Shapley, L. S. and Spielberg, K. and Tuy, Hoang and Walkup, D. W. and Wets, Roger and Witzgall, C. and Padberg, M. W.},
+  year = {1980},
+  volume = {12},
+  pages = {37--60},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/BFb0120886},
+  urldate = {2025-04-19},
+  abstract = {We report on the implementation and computational testing of several versions of a set covering algorithm , based on the family of cutting planes from conditiona l bounds discussed in the companion paper (21 . The algorithm uses a set of heuristics to find prime covers , another set of heuristics to find feasible solutions to the dual linear program which are needed to generate cuts , and subgradient optimization to find lower bounda . It also uses implicit enumeration with some new branching rules . Each of the ingredients was implemented and tested in several versions . The variant of the algorithm that emerged as best was run on 55 randomly generated test problems (20 of them from the literature), with up to 200 constraints and 2000 variables. The results show th. algorithm to be more reliable and efficient than earlier procedures on large , sparse set covering problem ..},
+  isbn = {978-3-642-00801-6 978-3-642-00802-3},
+  langid = {english},
+  keywords = {notion},
+  file = {/Users/gokhanmurali/Zotero/storage/JB7T73TU/Balas and Ho - 1980 - Set covering algorithms using cutting planes, heur.pdf}
+}
+
+@inproceedings{leyton-brownUniversalTestSuite2000,
+  title = {Towards a Universal Test Suite for Combinatorial Auction Algorithms},
+  booktitle = {Proceedings of the 2nd {{ACM}} Conference on {{Electronic}} Commerce},
+  author = {{Leyton-Brown}, Kevin and Pearson, Mark and Shoham, Yoav},
+  year = {2000},
+  month = oct,
+  pages = {66--76},
+  publisher = {ACM},
+  address = {Minneapolis Minnesota USA},
+  doi = {10.1145/352871.352879},
+  urldate = {2025-04-19},
+  abstract = {General combinatorial auctions---auctions in which bidders place unrestricted bids for bundles of goods---are the subject of increasing study. Much of this work has focused on algorithms for finding an optimal or approximately optimal set of winning bids. Comparatively little attention has been paid to methodical evaluation and comparison of these algorithms. In particular, there has not been a systematic discussion of appropriate data sets that can serve as universally accepted and well motivated benchmarks. In this paper we present a suite of distribution families for generating realistic, economically motivated combinatorial bids in five broad real-world domains. We hope that this work will yield many comments, criticisms and extensions, bringing the community closer to a universal combinatorial auction test suite.},
+  isbn = {978-1-58113-272-4},
+  langid = {english},
+  keywords = {notion},
+  file = {/Users/gokhanmurali/Zotero/storage/JE9HTV74/Leyton-Brown et al. - 2000 - Towards a universal test suite for combinatorial a.pdf}
+}
+
+
+@article{cornuejolsComparisonHeuristicsRelaxations1991,
+  title = {A Comparison of Heuristics and Relaxations for the Capacitated Plant Location Problem},
+  author = {Cornuejols, G. and Sridharan, R. and Thizy, J. M.},
+  year = {1991},
+  month = feb,
+  journal = {European Journal of Operational Research},
+  volume = {50},
+  number = {3},
+  pages = {280--297},
+  issn = {0377-2217},
+  doi = {10.1016/0377-2217(91)90261-S},
+  urldate = {2025-04-19},
+  abstract = {Approaches proposed in the literature for the Capacitated Plant Location Problem are compared. The comparison is based on new theoretical and computational results. The main emphasis is on relaxations. In particular, dominance relations among the various relaxations found in the literature are identified. In the computational study, the relaxations are compared as a function of various characteristics of the test problems. Several of these relaxations can be used to generate heuristic feasible solutions that are better than the classical greedy or interchange heuristics, both in computing time and in the quality of the solutions found.},
+  keywords = {capacitated facility location,Lagrangian heuristic,Lagrangian relaxation,Location theory},
+  file = {/Users/gokhanmurali/Zotero/storage/S9VQRZZF/037722179190261S.html}
+}
+
+
+@book{bergmanDecisionDiagramsOptimization2016,
+  title = {Decision {{Diagrams}} for {{Optimization}}},
+  author = {Bergman, David and Cire, Andre A. and Van Hoeve, Willem-Jan and Hooker, John},
+  year = {2016},
+  series = {Artificial {{Intelligence}}: {{Foundations}}, {{Theory}}, and {{Algorithms}}},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-319-42849-9},
+  urldate = {2025-04-19},
+  copyright = {http://www.springer.com/tdm},
+  isbn = {978-3-319-42847-5 978-3-319-42849-9},
+  langid = {english},
+  keywords = {Constraint Programming,Cutting Planes,Decision Diagrams,Discrete Optimization,Graph Coloring,Operations Research}
+}
+
+
+@misc{luUniversalApproximationTheorem2020,
+  title = {A {{Universal Approximation Theorem}} of {{Deep Neural Networks}} for {{Expressing Probability Distributions}}},
+  author = {Lu, Yulong and Lu, Jianfeng},
+  year = {2020},
+  month = nov,
+  number = {arXiv:2004.08867},
+  eprint = {2004.08867},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2004.08867},
+  urldate = {2025-04-19},
+  abstract = {This paper studies the universal approximation property of deep neural networks for representing probability distributions. Given a target distribution \${\textbackslash}pi\$ and a source distribution \$p\_z\$ both defined on \${\textbackslash}mathbb\{R\}{\textasciicircum}d\$, we prove under some assumptions that there exists a deep neural network \$g:{\textbackslash}mathbb\{R\}{\textasciicircum}d{\textbackslash}rightarrow {\textbackslash}mathbb\{R\}\$ with ReLU activation such that the push-forward measure \$({\textbackslash}nabla g)\_{\textbackslash}\# p\_z\$ of \$p\_z\$ under the map \${\textbackslash}nabla g\$ is arbitrarily close to the target measure \${\textbackslash}pi\$. The closeness are measured by three classes of integral probability metrics between probability distributions: \$1\$-Wasserstein distance, maximum mean distance (MMD) and kernelized Stein discrepancy (KSD). We prove upper bounds for the size (width and depth) of the deep neural network in terms of the dimension \$d\$ and the approximation error \${\textbackslash}varepsilon\$ with respect to the three discrepancies. In particular, the size of neural network can grow exponentially in \$d\$ when \$1\$-Wasserstein distance is used as the discrepancy, whereas for both MMD and KSD the size of neural network only depends on \$d\$ at most polynomially. Our proof relies on convergence estimates of empirical measures under aforementioned discrepancies and semi-discrete optimal transport.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Machine Learning,Computer Science - Numerical Analysis,Mathematics - Numerical Analysis,Mathematics - Statistics Theory,Statistics - Machine Learning,Statistics - Statistics Theory}
+}
+
+
+@misc{prouvostEcoleGymlikeLibrary2020a,
+  title = {Ecole: {{A Gym-like Library}} for {{Machine Learning}} in {{Combinatorial Optimization Solvers}}},
+  shorttitle = {Ecole},
+  author = {Prouvost, Antoine and Dumouchelle, Justin and Scavuzzo, Lara and Gasse, Maxime and Ch{\'e}telat, Didier and Lodi, Andrea},
+  year = {2020},
+  month = nov,
+  number = {arXiv:2011.06069},
+  eprint = {2011.06069},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2011.06069},
+  urldate = {2025-04-19},
+  abstract = {We present Ecole, a new library to simplify machine learning research for combinatorial optimization. Ecole exposes several key decision tasks arising in general-purpose combinatorial optimization solvers as control problems over Markov decision processes. Its interface mimics the popular OpenAI Gym library and is both extensible and intuitive to use. We aim at making this library a standardized platform that will lower the bar of entry and accelerate innovation in the field. Documentation and code can be found at https://www.ecole.ai.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,notion},
+  file = {/Users/gokhanmurali/Zotero/storage/FITVKJ67/Prouvost et al_2020_Ecole.pdf}
+}
+
+@misc{feyFastGraphRepresentation2019,
+  title = {Fast {{Graph Representation Learning}} with {{PyTorch Geometric}}},
+  author = {Fey, Matthias and Lenssen, Jan Eric},
+  year = {2019},
+  month = apr,
+  number = {arXiv:1903.02428},
+  eprint = {1903.02428},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.1903.02428},
+  urldate = {2025-04-19},
+  abstract = {We introduce PyTorch Geometric, a library for deep learning on irregularly structured input data such as graphs, point clouds and manifolds, built upon PyTorch. In addition to general graph data structures and processing methods, it contains a variety of recently published methods from the domains of relational learning and 3D data processing. PyTorch Geometric achieves high data throughput by leveraging sparse GPU acceleration, by providing dedicated CUDA kernels and by introducing efficient mini-batch handling for input examples of different size. In this work, we present the library in detail and perform a comprehensive comparative study of the implemented methods in homogeneous evaluation scenarios.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  file = {/Users/gokhanmurali/Zotero/storage/F3NMSTSK/Fey_Lenssen_2019_Fast Graph Representation Learning with PyTorch Geometric.pdf}
+}

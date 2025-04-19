@@ -1,1 +1,193 @@
-\section{Methodology}\label{sec:methodology}
+\section{Methodology}\label{sec:methodology2}\label{sec:methodology}
+
+The primary objective of this study is to demonstrate that the Graph Attention Network (GAT) model can better imitate the Strong Branching strategy compared to the Graph Convolutional Neural Network.
+This section will discuss the techniques and methods used to mimic the Strong Branching strategy with Graph Attention Network(GAT)-based approaches.
+The methodology consists of three phases:
+
+\subsection{Data Collection}\label{subsec:data-collection}
+Training data is required to train a machine learning model.
+For the GAT models to learn, 100,000 Strong Branching examples were collected separately from randomly generated Set Covering instances following Balas and Ho~\cite{balasSetCoveringAlgorithms1980}, randomly generated Combinatorial Auction instances following Leyton-Brown et al.~\cite{leyton-brownUniversalTestSuite2000} and randomly generated Maximum Independent Set instances following the Bergman et al.~\cite{bergmanDecisionDiagramsOptimization2016}.
+These three benchmarks were selected due to their characteristics: they pose significant challenges for state-of-the-art solvers while also serving as representative examples of mixed integer programming problems commonly encountered in practical applications.
+
+
+The dataset was divided into two subsets, with 80\% allocated for training and the remaining 20\% reserved for validation.
+This partitioning ensures that the model is trained on the training data while its performance is evaluated on a separate validation set, allowing for a reliable assessment of its generalization capability.
+Details of the training and validation dataset can be seen in Table~\ref{tab:gat-training-data}.
+
+\input{tables/gat_training_data}
+
+To ensure that the collected Strong Branching examples are as independent from each other as possible, the branching strategy used in solving the problems was Pseudocosts Branching with a 95\% probability and Strong Branching with a 5\% probability, as was done in the study by Gasse et al.~\cite{gasseExactCombinatorialOptimization2019}.
+For example, as illustrated in Figure~\ref{fig:sample-distribution}, an analysis of the distribution of sampled nodes in the maximum independent set problems reveals that a sufficient number of samples have been collected from various levels of the branch-and-bound tree.
+This approach ensured that Strong Branching examples were collected from different nodes of the search tree as much as possible.
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/Sample Distribution}
+    \caption{Distribution of 100,000 sampled nodes in the maximum independent set problems according to percentile levels}
+    \label{fig:sample-distribution}
+\end{figure}
+
+
+Each training example includes the branching candidate variables, the Strong Branching score calculated by the Strong Branching strategy for the candidate variables, and the variable selected for branching by the Strong Branching strategy.
+In addition to the decisions made by the Strong Branching strategy, constraint, variable, and edge features from Table A.0.3, %burası güncellenecek
+as well as connectivity data, were also collected, as in the study by Gasse et al.~\cite{gasseExactCombinatorialOptimization2019}.
+The reason for considering the features used by Gasse et al.~\cite{gasseExactCombinatorialOptimization2019} is to prevent discrepancies caused by different features when comparing models.
+It is believed that this approach would allow for a more accurate comparison of the models.
+
+The generation of random problems, solving the problems using Strong Branching or Pseudocosts Branching, and collecting the training data were all performed using the Python library called ecole~\cite{prouvostEcoleGymlikeLibrary2020a}.
+
+
+\subsection{Training GAT Models}
+The training process was conducted offline.
+The GAT models were trained separately for each problem type using 100,000 training examples with the Adam optimizer~\cite{kingmaAdamMethodStochastic2017} and Cross Entropy Loss.
+The GAT models trained in this study can be seen in Table~\ref{fig:gat-models} as follows:
+
+\input{tables/gat_models}
+
+
+The GAT models trained in this study have three main components:
+
+\begin{itemize}
+  \item Preprocessing Layers: As in Gasse et al.~\cite{gasseExactCombinatorialOptimization2019}'s study, the variable features and constraint features were transformed into 64-dimensional embeddings using a fully connected 2-layer MLP with ReLU activation function and layer normalization.
+  Layer normalization was also applied to the edge features.
+  The reason for applying this process to the variable, constraint, and edge features is to enable the model to learn how these features should be updated to achieve optimal performance.
+  The model will learn how to transform the variable and constraint features into 64-dimensional embeddings based on the training data.
+  \item GAT Layers: TThe key difference between this study and the work of Gasse et al.~\cite{gasseExactCombinatorialOptimization2019} is the use of GAT Convolution layers as convolution layers.
+  Unlike Graph Convolutional Neural Networks (GCNN), the Graph Attention Network (GAT) model allows a node's neighbors to have varying degrees of importance for the node itself.
+  For this reason, it was hypothesized that the GAT model would better mimic the Strong Branching strategy compared to the GCNN model.
+  Therefore, instead of GCNN, two GAT layers were added to the GAT model.
+  Design decisions were made when adding the GAT layers to the model to enhance its performance as follows:
+  \begin{itemize}
+      \item In the GAT convolution operation, the creation of self-loops was disabled.
+      This is because MILP problems are represented as bipartite graphs, and self-loops do not hold any meaning in bipartite graphs.
+      In the bipartite graphs used, edges exist only between variable and constraint nodes.
+      \item After the convolution operation, to retain and preserve the node's own information, the node's own embeddings were concatenated with the embeddings aggregated from neighboring nodes using a learnable skip connection.
+      \item Before the concatenation process, the node's own embeddings were passed through a Linear layer.
+      The reason for this is to enable the model to learn how to update the node's own embeddings before the concatenation process.
+      \item The concatenated embeddings were passed through a ReLU activation function.
+  \end{itemize}
+  \item Fully Connected MLP: At final stage, the variable embeddings, which have undergone two convolution operations, are passed through a 2-layer MLP.
+  A ReLU activation function is used in the first layer.
+  A SoftMax activation function is used in the second layer.
+  As a result of this process, the 64-dimensional embeddings for each variable are converted into a single dimensional score.
+  The model selects the variable with the highest score as the branching variable among branching candidates.
+\end{itemize}
+
+
+The design of the GAT architecture, as well as the training and evaluation processes, were carried out using Python library named PyTorch Geometric~\cite{feyFastGraphRepresentation2019}.
+The designed end-to-end GAT architecture is as shown in Figure~\ref{fig:gat}.
+
+
+\begin{figure*}[htb!]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/GAT}
+    \caption{GAT Convolution based GNN architecture.}
+    \label{fig:gat}
+\end{figure*}
+
+When analyzing the validation accuracy of GAT models on the Set Covering problems, it is evident from Figure~\ref{fig:sc-validation-accuracy} that the MHGAT8 model generally outperforms the other models.
+As shown in Table~\ref{tab:sc-validation-accuracy}, the highest validation accuracy at the final epoch was also achieved by the MHGAT8 model.
+Based on these findings, the MHGAT8 model was selected for further evaluations on the Set Covering problems, as it demonstrated superior performance in this context.
+
+\input{tables/sc_validation_accuracy}
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/SC Validation Accuracy}
+    \caption{Validation accuracy of GAT models on Set Covering validation dataset.}
+    \label{fig:sc-validation-accuracy}
+\end{figure}
+
+
+When analyzing the validation accuracy of GAT models on the Combinatorial Auction problems, it is evident from Figure 4.4~\ref{fig:ca-validation-accuracy} that the MHGAT8 model generally outperforms the other models.
+As shown in Table~\ref{tab:ca-validation-accuracy}, the highest validation accuracy at the final epoch was also achieved by the MHGAT8 model.
+Based on these findings, the MHGAT8 model was selected for further evaluations on the Combinatorial Auction problems, as it demonstrated superior performance in this context.
+
+
+\input{tables/ca_validation_accuracy}
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/CA Validation Accuracy}
+    \caption{Validation accuracy of GAT models on Combinatorial Auction validation dataset.}
+    \label{fig:ca-validation-accuracy}
+\end{figure}
+
+
+When analyzing the validation accuracy of GAT models on the Maximum Independent Set problems, it is evident from Figure 4.5 that the MHGAT8 model generally outperforms the other models.
+As shown in Table~\ref{tab:is-validation-accuracy}, the highest validation accuracy at the final epoch was also achieved by the MHGAT8 model.
+Based on these findings, the MHGAT8 model was selected for further evaluations on the Maximum Independent Set problems, as it demonstrated superior performance in this context.
+
+\input{tables/is_validation_accuracy}
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/IS Validation Accuracy}
+    \caption{Validation accuracy of GAT models on Maximum Independent Set validation dataset.}
+    \label{fig:is-validation-accuracy}
+\end{figure}
+
+
+\subsection{Evaluation}
+The GCNN and GAT models were trained using the same set of 100,000 training examples separately for each problem type.
+The computations have been performed on Nvidia A100 GPU with 83.5 GB RAM, 40 GB GPU RAM and 235.7 GB Memory.
+
+
+Throughout the experiments, SCIP 8.0.0 was utilized as the solver, with a time limit set to 1 hour.
+Cutting plane generation was restricted to the root node only, and solver restarts were disabled.
+
+
+At this stage, two separate experiments were conducted.
+In the first experiment, 100 randomly generated “Easy” instances of the Set Covering, Combinatorial Auction, and Maximum Independent Set problems were solved individually using the Full Strong Branching (FSB), Most Infeasible Branching (MIB), SCIP’s default brancher Reliability Pseudocost (RPB), GCNN and GAT models.
+The problems utilized in this experiment are of the same complexity level as those used for training the models.
+
+
+In the second experiment, 100 randomly generated “Medium” instances of the Set Covering, Combinatorial Auction and Maximum Independent Set problems were solved individually using the SCIP’s default brancher Reliability Pseudocost (RPB), GCNN and GAT models.
+The problems used in this experiment are more complex than those on which the models were trained.
+The increase in complexity in Set Covering Problems arises from the growth in the number of constraints, while in Combinatorial Auction Problems, it is attributed to the increase in both the number of constraints and variables.
+Experimental results demonstrate that all models solve problems in the “Medium” category with a higher number of nodes and longer computation times compared to problems in the “Easy” category.
+The objective is to observe and evaluate the performance of the models when applied to more challenging problem instances, thereby assessing their ability to generalize to higher levels of complexity.
+Details of the evaluation dataset can be seen in Table~\ref{tab:gat-evaluation-data}.
+
+\input{tables/gat_evaluation_data}
+
+
+\subsubsection{Results}
+The primary characteristic of the Strong Branching strategy is its ability to minimize the number of nodes in the search tree.
+This study aims to demonstrate that the Graph Attention Network (GAT) strategy can better imitate the Strong Branching strategy compared to the Graph Convolutional Neural Network (GCNN).
+Consequently, the primary evaluation criterion is the average number of nodes required by the models to solve the problems.
+
+
+As shown in the Table~\ref{tab:sc-results-easy}, the MHGAT8 model solved the Set Covering problems in the "Easy" category with an average of 0.79\% fewer nodes compared to the GCNN model.
+When comparing the models in terms of time, the MHGAT8 model took, on average, 58.02\% longer to solve the problems than the GCNN model.
+However, as previously noted, the primary evaluation criterion in these experiments is the average number of nodes.
+
+
+Another statistic reveals that out of 100 problems, the MHGAT8 model solved 52 problems with fewer nodes, while the GCNN model outperformed in 38 cases.
+In 10 problems, both models produced an equal number of nodes.
+These results suggest that the MHGAT8 model better imitates the Strong Branching strategy for “Easy” Set Covering problems compared to the GCNN model.
+
+
+When comparing GCNN and MHGAT8 with other models, as expected, both models were faster than the Full Strong Branching (FSB) model.
+However, the FSB model achieved solutions with fewer nodes.
+Both GCNN and MHGAT8 outperformed the Most Infeasible Branching (MIB) algorithm in terms of both node count and solution time.
+Additionally, while GCNN and MHGAT8 demonstrated better performance than the SCIP’s default brancher Reliability Pseudocost Branching (RPB) algorithm in terms of time, RPB outperformed both models in terms of node count.
+
+\input{tables/sc_results_easy}
+
+As shown in the Table~\ref{tab:ca-results-easy}, the MHGAT8 model solved the Combinatorial Auction problems in the "Easy" category with an average of 4.91\% fewer nodes compared to the GCNN model.
+When comparing the models in terms of time, the MHGAT8 model took, on average, 6.77\% longer to solve the problems than the GCNN model.
+However, as previously noted, the primary evaluation criterion in these experiments is the average number of nodes.
+
+
+Another statistic reveals that out of 100 problems, the MHGAT8 model solved 55 problems with fewer nodes, while the GCNN model outperformed in 36 cases.
+In 9 problems, both models produced an equal number of nodes.
+These results suggest that the MHGAT8 model better imitates the Strong Branching strategy for “Easy” Combinatorial Auction problems compared to the GCNN model.
+
+
+When comparing GCNN and MHGAT8 with other models, as expected, both models were faster than the Full Strong Branching (FSB) model.
+However, the FSB model achieved solutions with fewer nodes.
+Both GCNN and MHGAT8 outperformed the Most Infeasible Branching (MIB) algorithm in terms of both node count and solution time.
+Additionally, while GCNN and MHGAT8 demonstrated better performance than the SCIP’s default brancher Reliability Pseudocost Branching (RPB) algorithm in terms of time, RPB outperformed both models in terms of node count.
+
+\input{tables/ca_results_easy}
