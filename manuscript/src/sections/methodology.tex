@@ -271,17 +271,17 @@ A high weight indicates that the feature is more informative:
 \begin{itemize}
   \item Weight Vector for Variable Features: ([1.6542, 0.4013, 0.9640, 0.5945, 0.5959, 0.3008, 0.5634, 0.9036, 0.8313, 0.9918, 0.3267, 0.5149, 0.8923, 0.2177, 1.1524, 0.2589, 0.2429, 0.9371, 0.6989])
   \item The model assigns the highest weights to the following variable features, as it considers these features to be more informative:
-    \item $type$: Type (binary, integer, impl. integer, continuous) as a onehot encoding,
-    \item $reduced_cost$: Reduced cost, normalized,
-    \item $has_lb$: Lower bound indicator.
+    \item type: Type (binary, integer, impl. integer, continuous) as a onehot encoding,
+    \item reduced\_cost: Reduced cost, normalized,
+    \item has\_lb: Lower bound indicator.
   \item The model assigns the lowest weights to the following variable features, as it considers these features to be less informative:
-    \item $basis_status$: Simplex basis status (lower, basic, upper, zero) as a one-hot encoding,
-    \item $sol_val$: Solution value,
-    \item $age$: LP age, normalized.
+    \item basis\_status: Simplex basis status (lower, basic, upper, zero) as a one-hot encoding,
+    \item sol\_val: Solution value,
+    \item age: LP age, normalized.
   \item The model assigns the highest weights to the following constraint features, as it considers these features to be more informative:
-    \item $dualsol_val$: Dual solution value, normalized,
-    \item $age$: LP age, normalized with total number of LPs.
+    \item dualsol\_val: Dual solution value, normalized,
+    \item age: LP age, normalized with total number of LPs.
   \item The model assigns the lowest weights to the following constraint features, as it considers these features to be less informative:
-    \item $is_tight$: Tightness indicator in LP solution,
-    \item $obj_cos_sim$: Cosine similarity with objective.
+    \item is\_tight: Tightness indicator in LP solution,
+    \item obj\_cos\_sim: Cosine similarity with objective.
 \end{itemize}
