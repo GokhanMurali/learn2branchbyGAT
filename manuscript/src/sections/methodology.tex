@@ -191,3 +191,97 @@ Both GCNN and MHGAT8 outperformed the Most Infeasible Branching (MIB) algorithm 
 Additionally, while GCNN and MHGAT8 demonstrated better performance than the SCIP’s default brancher Reliability Pseudocost Branching (RPB) algorithm in terms of time, RPB outperformed both models in terms of node count.
 
 \input{tables/ca_results_easy}
+
+
+As shown in the Table~\ref{tab:is-results-easy}, the MHGAT8 model solved the Maximum Independent Set problems in the "Easy" category with an average of 5.60\% fewer nodes compared to the GCNN model.
+When comparing the models in terms of time, the MHGAT8 model took, on average, 1.66\% longer to solve the problems than the GCNN model.
+However, as previously noted, the primary evaluation criterion in these experiments is the average number of nodes.
+
+
+Another statistic reveals that out of 100 problems, the MHGAT8 model solved 48 problems with fewer nodes, while the GCNN model outperformed in 44 cases.
+In 8 problems, both models produced an equal number of nodes.
+These results suggest that the MHGAT8 model better imitates the Strong Branching strategy for “Easy” Maximum Independent Set problems compared to the GCNN model.
+
+
+When comparing GCNN and MHGAT8 with other models, as expected, both models were faster than the Full Strong Branching (FSB) model.
+However, the FSB model achieved solutions with fewer nodes.
+Both GCNN and MHGAT8 outperformed the Most Infeasible Branching (MIB) algorithm in terms of both node count and solution time.
+Additionally, while GCNN and MHGAT8 demonstrated better performance than the SCIP’s default brancher Reliability Pseudocost Branching (RPB) algorithm in terms of time, RPB outperformed both models in terms of node count.
+
+\input{tables/is_results_easy}
+
+
+In the second experiment, we attempted to solve more complex “Medium” Set Covering and Combinatorial Auction problems, which were beyond the complexity of the problems used during training, using the SCIP’s default brancher Reliability Pseudocost (RPB), GCNN and GAT models.
+The primary objective was to observe and evaluate the performance of these models when faced with more challenging problem instances.
+
+
+As shown in the Table~\ref{tab:sc-results-medium}, the MHGAT8 model solved the Set Covering problems in the "Medium" category with an average of 0.76\% fewer nodes compared to the GCNN model.
+When comparing the models in terms of time, the MHGAT8 model took, on average, 104.77\% longer to solve the problems than the GCNN model.
+However, as previously noted, the primary evaluation criterion in these experiments is the average number of nodes.
+
+
+Another statistic reveals that out of 100 problems, the MHGAT8 model solved 49 problems with fewer nodes, while the GCNN model outperformed in 47 cases.
+4 problems were excluded from the scope of the study as their solving times exceeded 1 hour.
+These results suggest that the MHGAT8 model better imitates the Strong Branching strategy for Set Covering problems compared to the GCNN model in “Medium” problem category as well.
+
+
+When comparing the GCNN and MHGAT8 models with SCIP’s default brancher, RPB, it can be observed that the models are better than RPB in the “Medium” problem category.
+In the “Easy” problem category, MHGAT8 solves the problems with 159\% more nodes compared to RPB, whereas in the “Medium” category, it requires 4.25\% less nodes.
+This observation indicates that as the problem complexity increases, the performance of the MHGAT8 model approaches that of the RPB algorithm.
+
+\input{tables/sc_results_medium}
+
+
+As shown in the Table~\ref{tab:ca-results-medium}, the MHGAT8 model solved the Combinatorial Auction problems in the "Medium" category with an average of 2.96\% fewer nodes compared to the GCNN model.
+When comparing the models in terms of time, the MHGAT8 model took, on average, 12.61\% longer to solve the problems than the GCNN model.
+However, as previously noted, the primary evaluation criterion in these experiments is the average number of nodes.
+
+
+Another statistic reveals that out of 100 problems, the MHGAT8 model solved 57 problems with fewer nodes, while the GCNN model outperformed in 43 cases.
+These results suggest that the MHGAT8 model better imitates the Strong Branching strategy for Combinatorial Auction problems compared to the GCNN model in “Medium” problem category as well.
+
+
+When comparing the GCNN and MHGAT8 models with SCIP’s default brancher, RPB, it can be observed that the models are competitive with RPB in the “Medium” problem category.
+In the “Easy” problem category, MHGAT8 solves the problems with 413\% more nodes compared to RPB, whereas in the “Medium” category, it requires only 6.67\% more nodes.
+This observation indicates that as the problem complexity increases, the performance of the MHGAT8 model approaches that of the RPB algorithm.
+
+\input{tables/ca_results_medium}
+
+
+As shown in the Table~\ref{tab:is-results-medium}, the MHGAT8 model solved the Maximum Independent Set problems in the "Medium" category with an average of 1.10\% fewer nodes compared to the GCNN model.
+When comparing the models in terms of time, the MHGAT8 model took, on average, 10.50\% longer to solve the problems than the GCNN model.
+However, as previously noted, the primary evaluation criterion in these experiments is the average number of nodes.
+
+
+Another statistic reveals that out of 100 problems, the MHGAT8 model solved 52 problems with fewer nodes, while the GCNN model outperformed in 48 cases.
+These results suggest that the MHGAT8 model better imitates the Strong Branching strategy for Maximum Independent Set problems compared to the GCNN model in “Medium” problem category as well.
+
+
+When comparing the GCNN and MHGAT8 models with SCIP’s default brancher, RPB, it can be observed that the models are not competitive with RPB in the “Medium” problem category.
+
+\input{tables/is_results_medium}
+
+
+\subsubsection{Feature Analysis}
+To determine which variable and constraint features listed in the Appendix A Table A.0.3 %burası güncellenecek
+the trained MHGAT8 model considers more informative, it is sufficient to examine the parameters of the multi-layer perceptron used by the model while generating variable and constraint embeddings from these features.
+A high weight indicates that the feature is more informative:
+
+
+\begin{itemize}
+  \item Weight Vector for Variable Features: ([1.6542, 0.4013, 0.9640, 0.5945, 0.5959, 0.3008, 0.5634, 0.9036, 0.8313, 0.9918, 0.3267, 0.5149, 0.8923, 0.2177, 1.1524, 0.2589, 0.2429, 0.9371, 0.6989])
+  \item The model assigns the highest weights to the following variable features, as it considers these features to be more informative:
+    \item $type$: Type (binary, integer, impl. integer, continuous) as a onehot encoding,
+    \item $reduced_cost$: Reduced cost, normalized,
+    \item $has_lb$: Lower bound indicator.
+  \item The model assigns the lowest weights to the following variable features, as it considers these features to be less informative:
+    \item $basis_status$: Simplex basis status (lower, basic, upper, zero) as a one-hot encoding,
+    \item $sol_val$: Solution value,
+    \item $age$: LP age, normalized.
+  \item The model assigns the highest weights to the following constraint features, as it considers these features to be more informative:
+    \item $dualsol_val$: Dual solution value, normalized,
+    \item $age$: LP age, normalized with total number of LPs.
+  \item The model assigns the lowest weights to the following constraint features, as it considers these features to be less informative:
+    \item $is_tight$: Tightness indicator in LP solution,
+    \item $obj_cos_sim$: Cosine similarity with objective.
+\end{itemize}

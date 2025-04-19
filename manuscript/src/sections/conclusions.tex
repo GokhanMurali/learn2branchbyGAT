@@ -1,1 +1,33 @@
 \section{Conclusions}\label{sec:conclusions}
+Branching is one of the most critical factors affecting performance of the Branch \& Bound algorithm used in solving combinatorial optimization problems.
+The selection of the correct variable as the branching variable is a determining factor in both the length of the search tree and the solution time of the problem.
+There are branching strategies like Strong Branching, which keeps the search tree short but takes a long time, as well as strategies like Most Infeasible Branching, which operates quickly but significantly increases the length of the search tree.
+In the past, researchers have aimed to maintain a reasonable balance between the length of the search tree and the solution time of problems by using different machine learning algorithms.
+To eliminate the time cost disadvantage of the Strong Branching strategy, researchers have tried machine learning-based methods.
+In these studies, researchers aimed to learn functions that would mimic the Strong Branching strategy and make faster branching decisions.
+
+
+In this paper, we proposed a new method for learning branching decisions usingThe experiments conducted in this study have demonstrated that, as hypothesized, Graph Attention Network-based models more effectively imitate the Strong Branching strategy compared to the GCNN.
+When comparing the GAT model with SCIP’s default brancher, RPB, it can be observed that the model is competitive with RPB in the “Medium” problem category for Set Covering and Combinatorial Auction problems.
+When the problem complexity increases, the performance of the MHGAT8 model approaches that of the RPB algorithm.
+This study shows that Machine Learning, especially, Graph Neural Network, is an important tool for solving complex optimization problems such as combinatorial optimization problems.
+Graph Neural Network can be utilized in a commercial optimization software to improve solution performance.
+
+In this area, as a future work, following topics can be studied:
+
+\begin{itemize}
+    \item Utilizing Different GNN Architectures: This study used GCNN and GAT architectures to solve optimization problems.
+    Other GNN architectures such as GraphSAGE and Graph Isomorphism Network (GIN) can also be utilized.
+    \item Leveraging Advantages of Different Architectures: This study used GCNN and GAT architectures to solve problems separately.
+    Hybrid models that combine GCNN and GAT models can also be utilized to solve optimization problems.
+    \item Diversifying Problem Types and Complexity: This study used Set Covering, Combinatorial Auction and Maximum Independent Set problems during training and experiments.
+    Other combinatorial optimization problem types such as Traveling Salesman and Knapsack can also be included.
+    In training and evaluation steps, complexity of problems can be increased.
+    \item Accelarating Performance of GAT Models: GAT models are computationally expensive compared to GCNN models.
+    To accelarate performance of GAT models techniques such as parallelized computing van be utilized.
+    \item Integrating GNN Models to Commercial Solvers: This study shows that Machine Learning, especially, Graph Neural Network, is an important tool for solving complex optimization problems such as combinatorial optimization problems.
+    Graph Neural Network can be utilized in a commercial optimization software to improve solution performance.
+\end{itemize}
+
+
+These proposed directions for future work could further enhance the potential of GAT and GNN-based methods in the field of optimization, advancing the integration of machine learning techniques into optimization strategies.

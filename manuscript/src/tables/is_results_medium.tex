@@ -1,0 +1,17 @@
+\begin{table*}[htb!]
+    \centering
+    \begin{tabular}{|l c c c c c|}
+        \hline
+        \textbf{Models} & \textbf{Number of Nodes} & \textbf{Improvement} & \textbf{Time} & \textbf{Improvement} & \textbf{Win}\\
+        \hline
+        \textbf{RPB} & 1,741.45 $\pm$ 4.12 & - & 79.14 $\pm$ 2.10 & - & -\\
+        \hline
+        \textbf{GCNN} & 8,088.27 $\pm$ 8.99 & - & \textbf{202.18 $\pm$ 5.41} & - & 48/100\\
+        \textbf{MHGAT8} & \textbf{7,999.37 $\pm$ 9.22} & \textcolor{green}{1.10\%} & 223.41 $\pm$ 5.58 & \textcolor{red}{-10.50\%} & \textbf{52/100}\\
+        \hline
+    \end{tabular}
+    \caption{Evaluation results for “Medium” Maximum Independent Set problems. “Number of Nodes” and “Time” (in seconds) are shifted geometric means over instances with shifts 10 and 1, respectively.
+    A "win" was defined as solving a problem with fewer nodes.
+    Best value among GCNN and GAT is in bold.}
+    \label{tab:is-results-medium}
+\end{table*}

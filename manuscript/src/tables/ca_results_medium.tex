@@ -1,0 +1,17 @@
+\begin{table*}[htb!]
+    \centering
+    \begin{tabular}{|l c c c c c|}
+        \hline
+        \textbf{Models} & \textbf{Number of Nodes} & \textbf{Improvement} & \textbf{Time} & \textbf{Improvement} & \textbf{Win}\\
+        \hline
+        \textbf{RPB} & 1,318.53 $\pm$ 3.67 & - & 21.40 $\pm$ 1.70 & - & -\\
+        \hline
+        \textbf{GCNN} & 1,453.53 $\pm$ 2.90 & - & \textbf{15.58 $\pm$ 2.00} & - & 43/100\\
+        \textbf{MHGAT8} & \textbf{1,410.48 $\pm$ 2.87} & \textcolor{green}{2.96\%} & 17.55 $\pm$ 2.07 & \textcolor{red}{-12.61\%} & \textbf{57/100}\\
+        \hline
+    \end{tabular}
+    \caption{Evaluation results for “Medium” Combinatorial Auction problems. “Number of Nodes” and “Time” (in seconds) are shifted geometric means over instances with shifts 10 and 1, respectively.
+    A "win" was defined as solving a problem with fewer nodes.
+    Best value among GCNN and GAT is in bold.}
+    \label{tab:ca-results-medium}
+\end{table*}

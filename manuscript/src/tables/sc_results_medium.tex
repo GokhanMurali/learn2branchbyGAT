@@ -1,0 +1,17 @@
+\begin{table*}[htb!]
+    \centering
+    \begin{tabular}{|l c c c c c|}
+        \hline
+        \textbf{Models} & \textbf{Number of Nodes} & \textbf{Improvement} & \textbf{Time} & \textbf{Improvement} & \textbf{Win}\\
+        \hline
+        \textbf{RPB} & 2,297.79 $\pm$ 4.77 & - & 54.07 $\pm$ 2.27 & - & -\\
+        \hline
+        \textbf{GCNN} & 2,216.97 $\pm$ 3.77 & - & \textbf{40.35 $\pm$ 2.75} & - & 47/100\\
+        \textbf{MHGAT8} & \textbf{2,200.04 $\pm$ 3.81} & \textcolor{green}{0.76\%} & 82.63 $\pm$ 3.21 & \textcolor{red}{-104.77\%} & \textbf{49/100}\\
+        \hline
+    \end{tabular}
+    \caption{Evaluation results for “Medium” Set Covering problems. “Number of Nodes” and “Time” (in seconds) are shifted geometric means over instances with shifts 10 and 1, respectively.
+    A "win" was defined as solving a problem with fewer nodes.
+    Best value among GCNN and GAT is in bold.}
+    \label{tab:sc-results-medium}
+\end{table*}
