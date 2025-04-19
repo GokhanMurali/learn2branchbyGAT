@@ -1,0 +1,33 @@
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{|lcccccc|}
+\toprule
+ & \textbf{CPLEX-D} & \textbf{SB} & \textbf{PC} & \textbf{SB+PC} & \textbf{SB+ML} \\
+\midrule
+\textbf{Unsolved} & & & & & \\
+\textbf{Instances} & & & & & \\
+\quad All (523) & 11 & 129 & 66 & 63 & \textbf{52} \\
+\quad Easy (255) & 0 & 12 & 15 & 14 & \textbf{13} \\
+\quad Medium (120) & 2 & 43 & 22 & 22 & \textbf{17} \\
+\quad Hard (148) & 9 & 74 & 29 & 27 & \textbf{22} \\
+\midrule
+\textbf{Number of} & & & & & \\
+\textbf{Nodes} & & & & & \\
+\quad All (523) & 46,633 & 33,072 & 92,662 & 70,455 & \textbf{59,223} \\
+\quad Easy (255) & 3,255 & 3,610 & 7,931 & 5,224 & \textbf{5,124} \\
+\quad Medium (120) & 173,417 & 121,923 & 395,199 & 288,916 & \textbf{234,093} \\
+\quad Hard (148) & 1,570,891 & 519,878 & 1,971,333 & 1,979,660 & \textbf{1,314,263} \\
+\midrule
+\textbf{Total Time} & & & & & \\
+\textbf{(s)} & & & & & \\
+\quad All (523) & 499 & 2,263 & \textbf{960} & 1,093 & 1,059 \\
+\quad Easy (255) & 111 & 602 & \textbf{243} & 361 & 382 \\
+\quad Medium (120) & 1,123 & 6,169 & 2,493 & 1,892 & \textbf{1,776} \\
+\quad Hard (148) & 3,421 & 9,803 & 4,705 & 4,718 & \textbf{4,039} \\
+\bottomrule
+\end{tabular}
+\caption{“Unsolved instances” are counts, “Num. nodes” and “Total time” (in seconds) are shifted geometric means over instances with shifts 10 and 1, respectively.
+Lower is better, and the best value in each row among PC, SB+PC and SB+ML is in bold.}
+    \label{tab:khalil-results}
+\end{table}

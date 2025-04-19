@@ -55,3 +55,50 @@ It can be stated that the learning process occurs online.
 Branching was performed using Strong Branching for the first $\Theta$ nodes of each problem.
 Each variable was assigned a label based on the Strong Branching score.
 The following formula was used for label assignment:
+
+\[ y_i^n = \begin{cases}
+      1 & S_i^n\geq (1-\alpha)S_*^n \\
+      0 & otherwise
+   \end{cases}
+\]
+
+where $S_*^n$ is maximum SB score and the parameter $\alpha$ $\in$ [0, 1] represents the fraction of the maximum Strong Branching ($S_*^n$) that a variable must achieve to be assigned a label of '1'.
+At each node, the assigned labels and the static features such as objective function coefficients and dynamic features such as the fractionality of variable i at the current solution were recorded as training data.
+Detailed description of features can be seen in Appendix A Table 0.2. % burası revize edilecek
+
+
+In second step, unlike Alvarez et al.~\cite{alvarezMachineLearningBasedApproximation2017}, Khalil et al.~\cite{khalilLearningBranchMixed2016} approached the problem as a ranking problem.
+Instead of predicting the Strong Branching score as Alvarez et al.~\cite{alvarezMachineLearningBasedApproximation2017} did, the researchers focused on ranking the variables among themselves in a manner similar to Strong Branching.
+According to the researchers, the exact Strong Branching score is not important; what matters is that the variables are ranked among themselves in the way Strong Branching would.
+At this stage, a linear function ($f$) was learned using the svmRank~\cite{joachimsTrainingLinearSVMs2006} machine learning algorithm and Pairwise loss~\cite{joachimsOptimizingSearchEngines}:
+
+\[
+f: \mathbb{R}^p \rightarrow \mathbb{R}, \quad
+f\left(\Phi(x_i, N_n)\right) = \mathbf{w}^T \Phi(x_i, N_n), \quad
+\]
+
+\[
+\hat{y}_i^n = f\left(\Phi(x_i, N_n)\right)
+\]
+
+\[
+\mathbf{w}^* = \arg\min_{\mathbf{w} \in \mathbb{R}^p}
+\sum_{N_n \in N} \ell(\mathbf{y}^n, \hat{\mathbf{y}}^n)
++ \lambda \| \mathbf{w} \|_2^2
+\]
+
+where $\Phi(x_i, N_n)$ denotes variable $x_i$ at node $N_n$ with $p$ features, $\mathbf{w}^*$ denotes learned weight vector, $\ell$ denotes the loss function (Pairwise loss), $\lambda$ denotes regularization parameter that helps to avoid overfitting, $\hat{\mathbf{y}}^n$ denotes vector of values resulting from applying $f$ to every fractional variable in $N_n$, $\mathbf{y}^n$ denotes the true label of every fractional variable in $N_n$.
+
+
+In third step, the learned weight vector was used for branching instead of Strong Branching.
+The feature vectors of the variables were multiplied by the learned weight vector to calculate a score for each variable.
+The variable with the highest score was selected for branching.
+
+
+In the experimental phase, the developed method (SB+ML) was tested on MIPLIB2010 problems.
+The results were compared with CPLEX's default branching strategy (CPLEX-D), Strong Branching (SB), Pseudocost Branching (PC), and the SB + PC strategy. SB+PC is a hybrid approach that uses SB for the first $\Theta$ = 500 nodes, and PC afterward.
+Experiments were conducted on a total of 523 problems.
+Problems solved by CPLEX-D with fewer than 50,000 nodes were classified as Easy, those solved with more than 50,000 but fewer than 500,000 nodes as Medium, and those solved with more than 500,000 nodes as Hard.
+The experimental results are summarized in the Table~\ref{tab:khalil-results}:
+
+\input{tables/khalil_results}
