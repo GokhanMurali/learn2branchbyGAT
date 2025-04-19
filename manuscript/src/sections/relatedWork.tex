@@ -102,3 +102,25 @@ Problems solved by CPLEX-D with fewer than 50,000 nodes were classified as Easy,
 The experimental results are summarized in the Table~\ref{tab:khalil-results}:
 
 \input{tables/khalil_results}
+
+
+The researchers analyzed the experimental results from three perspectives: the number of unsolved problems, the total number of nodes, and the total solution time.
+Since the researchers claimed that the developed method is better at selecting branching variables, the primary metric they focused on was the total number of nodes.
+As can be seen from the table above, the developed method (SB+ML) is more successful in terms of the total number of nodes compared to PC and SB+PC.
+When considering all the problems, it was observed that the developed method reduced the solution time compared to the Strong Branching strategy, while increasing the number of nodes.
+
+
+\subsection{GCNN Based Imitation of Strong Branching}\label{subsec:gcnn-based-imitation-of-strong-branching}
+In another study in this field, Gasse et al.~\cite{gasseExactCombinatorialOptimization2019} attempted to mimic the Strong Branching strategy using a Graph Convolutional Neural Network (GCNN).
+In this study, the researchers used the bipartite graph representation of MILP problems, enabling the use of GCNN in solving MILP problems.
+This study consists of three steps.
+
+
+In first step, 100,000 branching examples were collected from 10,000 randomly generated MILP problems (Set Covering Problems, Combinatorial Auction Problems,Capacitated Facility Location Problems, Maximum Independent Set Problems).
+For each branching example, the Strong Branching scores calculated for the variables and variable features such as objective coefficient, constraint features such as dual solution value, edge features such as constraint coefficient were collected.
+Detailed description of features can be seen in Appendix A Table 0.3. % burası revize edilecek
+
+
+In second step, unlike Alvarez et al.~\cite{alvarezMachineLearningBasedApproximation2017} and Khalil et al.~\cite{khalilLearningBranchMixed2016}, Gasse et al.~\cite{gasseExactCombinatorialOptimization2019} approached the problem as a classification problem.
+They attempted to learn how to select the variable to be used in branching with a Graph Neural Network, mimicking the approach of the Strong Branching strategy.
+The GNN architecture used here essentially consists of three components as can be seen in Figure 3.1.
