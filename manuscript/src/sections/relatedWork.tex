@@ -43,8 +43,7 @@ When cuts and heuristics are not used by CPLEX learned function seems to be non-
 
 \input{tables/alvarez_results_2}
 
-
-\subsection{ExtraTrees Based Imitation of Strong Branching}
+\subsection{svmRank Based Imitation of Strong Branching}
 Another study in this field was conducted by Khalil et al~\cite{khalilLearningBranchMixed2016}.
 In this study, the researchers attempted to mimic the Strong Branching strategy using the svmRank machine learning algorithm.
 This study consists of three steps.
@@ -63,7 +62,7 @@ The following formula was used for label assignment:
 \]
 
 where $S_*^n$ is maximum SB score and the parameter $\alpha$ $\in$ [0, 1] represents the fraction of the maximum Strong Branching ($S_*^n$) that a variable must achieve to be assigned a label of '1'.
-At each node, the assigned labels and the static features such as objective function coefficients and dynamic features such as the fractionality of variable i at the current solution were recorded as training data.
+At each node, the assigned labels and the static features such as objective function coefficients and dynamic features such as the fractionality of variable $i$ at the current solution were recorded as training data.
 Detailed description of features can be seen in Appendix A Table 0.2. % burası revize edilecek
 
 
@@ -159,9 +158,8 @@ Problem parameters can be seen in Table~\ref{tab:gasse-benchmark-problems}.
 
 \input{tables/gasse_benchmark_problems}
 
-
 The performance of different branching methods was evaluated based on the number of nodes required to solve instances and the overall solving time, which includes the computational cost of branching policies such as feature extraction and inference.
-As can be seen from the Table~\ref{tab:gasse-results}, The GCNN model demonstrated superior performance overall, particularly excelling in generalizing to larger instances and outperforming SCIP's default RPB branching rule in nearly all configurations, especially on medium and hard instances of set cover and combinatorial auction problems.
+As can be seen from the Table~\ref{tab:gasse-results}, the GCNN model demonstrated superior performance overall, particularly excelling in generalizing to larger instances and outperforming SCIP's default RPB branching rule in nearly all configurations, especially on medium and hard instances of set cover and combinatorial auction problems.
 However, it faced challenges with the maximum independent set problem, showing high variability in both runtime and node count.
 
 
@@ -171,7 +169,7 @@ These findings suggest that tighter integration of GCNN within a MILP solver cou
 
 \input{tables/gasse_results}
 
-\subsection{The Distinction of Study from Previous Works}
+\subsection{Contributions of this Study}
 In this study, unlike the approaches of Alvarez et al.~\cite{alvarezMachineLearningBasedApproximation2017} and Khalil et al.~\cite{khalilLearningBranchMixed2016}, the problem is formulated as a classification task.
 According to the Universal Approximation Theorem~\cite{luUniversalApproximationTheorem2020}, it is theoretically possible to approximate any function given a sufficient number of neurons.
 To leverage the high learning capacity of neural networks, this study employs Graph Neural Networks (GNNs) as the machine learning algorithm, as was done in the study by Gasse et al.~\cite{gasseExactCombinatorialOptimization2019}.

@@ -4,29 +4,29 @@
 These problems are linear optimization problems where some of the decision variables are integers, and some are continuous.
 It is possible to formulate MILP problems as follows:
 
-\begin{equation}
+\begin{equation*}
     \begin{aligned}
         \text{minimize} \quad & \textbf{c}^T \textbf{x} \\
         \text{s.t.} \quad & \textbf{A}\textbf{x} \leq \textbf{b} \\
         & \textbf{x} \in \mathbb{Z}^p \times \mathbb{R}^{n-p}\\
     \end{aligned}\label{eq:equation}
-\end{equation}
+\end{equation*}
 
 
-where \textbf{c} \begin{math} \in \mathbb{R}^n \end{math} represents the objective coefficient vector, \textbf{A} \begin{math} \in \mathbb{R}^{mxn} \end{math} represents the constraint coefficient matrix,  represents the right-hand-side vector, and  p \begin{math} \leq \end{math} n indicates the number of integer variables.
+where \textbf{c} \begin{math} \in \mathbb{R}^n \end{math} represents the objective coefficient vector, \textbf{A} \begin{math} \in \mathbb{R}^{mxn} \end{math} represents the constraint coefficient matrix, \textbf{b} \begin{math} \in \mathbb{R}^m \end{math} represents the right-hand-side vector, and  p \begin{math} \leq \end{math} n indicates the number of integer variables.
 MILP problems are usually solved by Branch \& Bound algorithm.
 
 
 \subsection{The LP Relaxation of a MILP Problem}\label{subsec:the-lp-relaxation-of-a-milp-problem}
 LP Relaxation of a MILP problem is the problem obtained by ignoring the integrality conditions on the variables in the MILP problem as follows:
 
-\begin{equation}
+\begin{equation*}
     \begin{aligned}
         \text{minimize} \quad & \textbf{c}^T \textbf{x} \\
         \text{s.t.} \quad & \textbf{A}\textbf{x} \leq \textbf{b} \\
         & \textbf{x} \in \mathbb{R}^{n}\\
-    \end{aligned}\label{eq:equation}
-\end{equation}
+    \end{aligned}\label{eq:equation2}
+\end{equation*}
 
 
 It is possible to solve this form of the problem using Linear Programming (LP) techniques such as Simplex algorithm.
@@ -56,18 +56,18 @@ If the optimal solution does not satisfy the integrality conditions of the probl
 Variables in the solution that do not satisfy integrality conditions are candidates for branching.
 A branching variable $x_i$ is selected from among the branching candidates by means of a branching strategy (such as Strong Branching).
 The problem is then split into two separate sub-problems by adding the conditions $x_i \leq \lfloor x_i \rfloor$ and $x_i \geq \lceil x_i \rceil$ separately and two separate nodes are added to the search tree.
-One of the noninvestigated nodes is selected, and the corresponding LP relaxation is solved.
+One of the non-investigated nodes is selected, and the corresponding LP relaxation is solved.
 Subsequently, the following process is executed:
 
 \begin{itemize}
-  \item If there is no feasible solution for the LP relaxation of the problem at the relevant node, the node is pruned and not further investigated (pruned by infeasibility).
+  \item If there is no feasible solution for the LP relaxation of the problem at the relevant node, the node is pruned and not further investigated (\textit{pruned by infeasibility}).
   \item If there is a feasible solution for the LP relaxation of the problem at the relevant node, the objective value of optimal solution is compared with the upper bound of the optimal objective value of the original problem:
   \begin{itemize}
-    \item If the optimal value of the LP relaxation is greater than the upper bound of the optimal value of the original problem, the node is pruned and not further investigated (pruned by bound).
+    \item If the optimal value of the LP relaxation is greater than the upper bound of the optimal value of the original problem, the node is pruned and not further investigated (\textit{pruned by bound}).
     \item If the optimal value of the LP relaxation is smaller than the upper bound of the optimal value of the original problem,
       \begin{itemize}
           \item If solution satisfies the integrality conditions of the original problem, then the upper bound is updated as the optimal value of the LP relaxation.
-          This node is pruned and not further investigated (pruned by optimality).
+          This node is pruned and not further investigated (\textit{pruned by optimality}).
           \item If solution does not satisfy the integrality conditions of the original problem, then one of the variables that do not satisfy the integrality conditions in the solution is selected by help of a branching strategy, and branching is performed.
           \end{itemize}
   \end{itemize}
@@ -97,9 +97,9 @@ The variable with the highest Strong Branching score is selected as the branchin
 Because the Strong Branching strategy simulates the branching decision for all candidate variables, it is generally successful in selecting the better branching variable and keeping the search tree short.
 However, since it solves the linear programming problem twice for each candidate variable, the Strong Branching strategy is very time-consuming.
 
-Consider a node N with LP value $z^*$, the two children $N_i^-$ and $N_i^+$ nodes, resulting from branching on i downwards and upwards, have (feasible) LP values $z_i^-$ and $z_i^+$, respectively.
+Consider a node N with LP value $z^*$, the two children $N_i^-$ and $N_i^+$ nodes, resulting from branching on $i$ downwards and upwards, have (feasible) LP values $z_i^-$ and $z_i^+$, respectively.
 The changes in objective value are then $\Delta_i^- = z_i^- - z^* $  and $\Delta_i^+ = z_i^+ - z^* $.
-Then Strong Branching score of variable $i$ is calculated as following: $$SB_i = score (\max \{\Delta_i^-, \epsilon\}, \max \{\Delta_i^+, \epsilon\}) $$
+Then Strong Branching score of variable $i$ is calculated as following: $$S_i = score (\max \{\Delta_i^-, \epsilon\}, \max \{\Delta_i^+, \epsilon\}) $$
 where $\epsilon$ is a small constant (e.g. $10^-6$). A product is commonly utilized for scoring purposes such as $score(a, b) = a x b$.
 
 
@@ -166,12 +166,13 @@ As can be seen in Figure~\ref{fig:gnn}, within a GNN layer, while the graph stru
 \begin{figure}[htb!]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/GNN}
-    \caption{Graph and three types of features, node features, edge features and graph features.}
+    \caption{A single layer of GNN.
+    Node, edge and graph features gets updated by a differentiable model ($f_V, f_E, f_G$) such as fully connected Multi-Layer Perceptron (MLP) with preserving graph structure and connectivity.}
     \label{fig:gnn}
 \end{figure}
 
 
-\subsection{Neural Message Passing}\label{subsec:neural-message-passing}
+\subsubsection{Neural Message Passing}\label{subsec:neural-message-passing}
 Connectivity (or adjacency) is an important concept of graph structured data.
 Neural Message Passing allows GNNs to utilize connectivity information.
 In Neural Message Passing, nodes exchange information with their neighboring nodes and aggregate that information to update their own representations.
@@ -193,17 +194,17 @@ Neural Message Passing networks can be described mathematically as following: $$
 where $j \in N(i)$, $\bigoplus$ denotes a differentiable, permutation invariant aggregation function, e.g., sum, mean or max, and $\gamma$ denotes differentiable update function, $\phi$ denotes differentiable message function such as MLPs (Multi-Layer Perceptrons).
 
 
-\subsection{Graph Convolutional Neural Networks (GCNNs)}\label{subsec:graph-convolutional-neural-networks-(gcnns)}
+\subsubsection{Graph Convolutional Neural Networks (GCNNs)}\label{subsec:graph-convolutional-neural-networks-(gcnns)}
 Graph Convolutional Neural Network (GCNN) is a special type of neural message passing network.
-A significant portion of GNN applications is composed of GCNNs. The GCNN layer is mathematically defined as following: $$x_i^{(n+1)} = \textcolor{blue}{\sigma}(\sum_{j \in N(i) \cup {i}} \textcolor{red}{\frac{1}{|(N(i))|}}(\textcolor{red}{W^T}x_j^n)$$
+A significant portion of GNN applications is composed of GCNNs. The GCNN layer is mathematically defined as following: $$x_i^{(n+1)} = \textcolor{blue}{\sigma}(\sum_{j \in N(i) \cup {i}} \textcolor{red}{\frac{1}{|N(i)|}}(\textcolor{red}{W^T}x_j^n)$$
 
 
 In GCNN, sum is preferred as aggregation function ($\bigoplus$ in neural message passing formulation), \textcolor{red}{red} operation denotes message function ($\phi$ in neural message passing formulation), \textcolor{blue}{blue} operation denotes update function ($\gamma$ in neural message passing formulation).
-Note that $\frac{1}{|(N(i))|}$ is the weighting factor (importance) of node j’s message to node i.
+Note that $\frac{1}{|N(i)|}$ is the weighting factor (importance) of node $j$’s message to node $i$.
 Therefore, all neighbors $j \in N(i)$ are equally important to node $i$.
 
 
-\subsection{Graph Attention Networks (GATs)}\label{subsec:graph-attention-networks-(gats)}
+\subsubsection{Graph Attention Networks (GATs)}\label{subsec:graph-attention-networks-(gats)}
 Graph Attention Network (GAT) is another type of neural message passing network. The GAT layer is mathematically defined as following: $$x_i^{(n+1)} = \textcolor{blue}{\sigma}(\sum_{j \in N(i)} \textcolor{red}{\alpha_{ij}}(\textcolor{red}{W^{n+1}}x_j^n)$$
 
 
@@ -215,17 +216,17 @@ Because not all neighbors of a node hold equal significance, attention $\alpha_{
 
 
 \begin{itemize}
-  \item Step 1: Let $f$ is an attention mechanism and it computes attention coefficients $e_{ij}$ across pairs of nodes $i$, $j$ based on their messages: $$ e_{ij} = f(W^{n+1}x_j^n, W^{n+1}x_i^n) $$ where $e_{ij}$ indicates the importance of node j’s messages to node i.
+  \item Step 1: Let $f$ is an attention mechanism and it computes attention coefficients $e_{ij}$ across pairs of nodes $i$, $j$ based on their messages: $$ e_{ij} = f(W^{(n+1)}x_j^n, W^{(n+1)}x_i^n) $$ where $e_{ij}$ indicates the importance of node $j$’s messages to node $i$.
   \item Step 2: Normalize $e_{ij}$ into the final attention weight $\alpha_{ij}$ by using the SoftMax function, so that $\sum_{j \in N(i)} \alpha_{ij} = 1 $. $$ \alpha_{ij} = \frac{e^{e_{ij}}}{\sum_{k \in N(i)} e^{e_{ik}}} $$
 \end{itemize}
 
 
 Multi-head attention is an extension of the attention mechanism that uses multiple independent attention mechanisms (or "heads") in parallel to learn different aspects of the graph structure and node relationships.
 By combining the outputs from these attention heads, the model achieves a richer and more robust representation of the graph data.
-In Multi-Head Attention method, multiple attention scores are created with different attention mechanisms, $ f^1, f^2, .... , f^N $ represents different attention functions: $$ e_{ij}^1 = f^1(W^{n+1}x_j^n, W^{n+1}x_i^n), \alpha_{ij}^1 = \frac{e^{e_{ij}^1}}{\sum_{k \in N(i)} e^{e_{ik}^1}} $$ $$ e_{ij}^2 = f^2(W^{n+1}x_j^n, W^{n+1}x_i^n), \alpha_{ij}^2 = \frac{e^{e_{ij}^2}}{\sum_{k \in N(i)} e^{e_{ik}^2}} $$ $$ ...... $$ $$ e_{ij}^N = f^N(W^{n+1}x_j^n, W^{n+1}x_i^n), \alpha_{ij}^N = \frac{e^{e_{ij}^N}}{\sum_{k \in N(i)} e^{e_{ik}^N}} $$
+In Multi-Head Attention method, multiple attention scores are created with different attention mechanisms, $ f^1, f^2, .... , f^N $ represents different attention functions: $$ e_{ij}^1 = f^1(W^{(n+1)}x_j^n, W^{(n+1)}x_i^n), \alpha_{ij}^1 = \frac{e^{e_{ij}^1}}{\sum_{k \in N(i)} e^{e_{ik}^1}} $$ $$ e_{ij}^2 = f^2(W^{(n+1)}x_j^n, W^{(n+1)}x_i^n), \alpha_{ij}^2 = \frac{e^{e_{ij}^2}}{\sum_{k \in N(i)} e^{e_{ik}^2}} $$ $$ ...... $$ $$ e_{ij}^N = f^N(W^{(n+1)}x_j^n, W^{(n+1)}x_i^n), \alpha_{ij}^N = \frac{e^{e_{ij}^N}}{\sum_{k \in N(i)} e^{e_{ik}^N}} $$
 
 
-Then outputs are aggregated by concatenation or summation as can be seen in Figure~\ref{fig:mh-gat}: $$ x_i^{(n+1)} = AGG(\sigma(\sum_{j \in N(i)} \textcolor{red}{\alpha_{ij}^1}(W^{n+1}x_j^n), \sigma(\sum_{j \in N(i)} \textcolor{red}{\alpha_{ij}^2}(W^{n+1}x_j^n), . ,$$ $$ \sigma(\sum_{j \in N(i)} \textcolor{red}{\alpha_{ij}^N}(W^{n+1}x_j^n)) $$
+Then outputs are aggregated by concatenation or summation as can be seen in Figure~\ref{fig:mh-gat}: $$ x_i^{(n+1)} = AGG(\sigma(\sum_{j \in N(i)} \textcolor{red}{\alpha_{ij}^1}(W^{(n+1)}x_j^n), \sigma(\sum_{j \in N(i)} \textcolor{red}{\alpha_{ij}^2}(W^{(n+1)}x_j^n), . ,$$ $$ \sigma(\sum_{j \in N(i)} \textcolor{red}{\alpha_{ij}^N}(W^{(n+1)}x_j^n)) $$
 .
 \begin{figure}[htb!]
     \centering

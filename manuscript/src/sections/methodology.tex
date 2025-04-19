@@ -40,7 +40,7 @@ The generation of random problems, solving the problems using Strong Branching o
 \subsection{Training GAT Models}
 The training process was conducted offline.
 The GAT models were trained separately for each problem type using 100,000 training examples with the Adam optimizer~\cite{kingmaAdamMethodStochastic2017} and Cross Entropy Loss.
-The GAT models trained in this study can be seen in Table~\ref{fig:gat-models} as follows:
+The GAT models trained in this study can be seen in Table~\ref{tab:gat-models} as follows:
 
 \input{tables/gat_models}
 
@@ -52,7 +52,7 @@ The GAT models trained in this study have three main components:
   Layer normalization was also applied to the edge features.
   The reason for applying this process to the variable, constraint, and edge features is to enable the model to learn how these features should be updated to achieve optimal performance.
   The model will learn how to transform the variable and constraint features into 64-dimensional embeddings based on the training data.
-  \item GAT Layers: TThe key difference between this study and the work of Gasse et al.~\cite{gasseExactCombinatorialOptimization2019} is the use of GAT Convolution layers as convolution layers.
+  \item GAT Layers: The key difference between this study and the work of Gasse et al.~\cite{gasseExactCombinatorialOptimization2019} is the use of GAT Convolution layers as convolution layers.
   Unlike Graph Convolutional Neural Networks (GCNN), the Graph Attention Network (GAT) model allows a node's neighbors to have varying degrees of importance for the node itself.
   For this reason, it was hypothesized that the GAT model would better mimic the Strong Branching strategy compared to the GCNN model.
   Therefore, instead of GCNN, two GAT layers were added to the GAT model.
@@ -99,7 +99,7 @@ Based on these findings, the MHGAT8 model was selected for further evaluations o
 \end{figure}
 
 
-When analyzing the validation accuracy of GAT models on the Combinatorial Auction problems, it is evident from Figure 4.4~\ref{fig:ca-validation-accuracy} that the MHGAT8 model generally outperforms the other models.
+When analyzing the validation accuracy of GAT models on the Combinatorial Auction problems, it is evident from Figure~\ref{fig:ca-validation-accuracy} that the MHGAT8 model generally outperforms the other models.
 As shown in Table~\ref{tab:ca-validation-accuracy}, the highest validation accuracy at the final epoch was also achieved by the MHGAT8 model.
 Based on these findings, the MHGAT8 model was selected for further evaluations on the Combinatorial Auction problems, as it demonstrated superior performance in this context.
 
@@ -114,7 +114,7 @@ Based on these findings, the MHGAT8 model was selected for further evaluations o
 \end{figure}
 
 
-When analyzing the validation accuracy of GAT models on the Maximum Independent Set problems, it is evident from Figure 4.5 that the MHGAT8 model generally outperforms the other models.
+When analyzing the validation accuracy of GAT models on the Maximum Independent Set problems, it is evident from Figure~\ref{fig:is-validation-accuracy} that the MHGAT8 model generally outperforms the other models.
 As shown in Table~\ref{tab:is-validation-accuracy}, the highest validation accuracy at the final epoch was also achieved by the MHGAT8 model.
 Based on these findings, the MHGAT8 model was selected for further evaluations on the Maximum Independent Set problems, as it demonstrated superior performance in this context.
 
