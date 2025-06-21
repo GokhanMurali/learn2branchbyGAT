@@ -100,7 +100,7 @@ However, since it solves the linear programming problem twice for each candidate
 Consider a node N with LP value $z^*$, the two children $N_i^-$ and $N_i^+$ nodes, resulting from branching on $i$ downwards and upwards, have (feasible) LP values $z_i^-$ and $z_i^+$, respectively.
 The changes in objective value are then $\Delta_i^- = z_i^- - z^* $  and $\Delta_i^+ = z_i^+ - z^* $.
 Then Strong Branching score of variable $i$ is calculated as following: $$S_i = score (\max \{\Delta_i^-, \epsilon\}, \max \{\Delta_i^+, \epsilon\}) $$
-where $\epsilon$ is a small constant (e.g. $10^-6$). A product is commonly utilized for scoring purposes such as $score(a, b) = a x b$.
+where $\epsilon$ is a small constant (e.g. $10^{-6}$). A product is commonly utilized for scoring purposes such as $score(a, b) = a x b$.
 
 
 \subsection{Neural Networks (NNs)}\label{subsec:neural-networks-(nns)}
@@ -237,7 +237,7 @@ Then outputs are aggregated by concatenation or summation as can be seen in Figu
 
 
 \subsection{Rectified Linear Unit (ReLU)}\label{subsec:rectified-linear-unit-(relu)}
-Rectified Linear Unit (ReLU) are a class of activation functions characterized by linear behavior in the positive domain and a value of zero in the negative domain.
+Rectified Linear Unit (ReLU) is a class of activation functions characterized by linear behavior in the positive domain and a value of zero in the negative domain.
 This function can be written as follows: $$ f(x) = \max \{0, x\}  $$
 
 
